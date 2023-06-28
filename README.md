@@ -17,7 +17,7 @@ On Windows, open the file `C:\Windows\System32\drivers\etc\hosts` in a text edit
 
 For the client application to connect to the SSO server, you need to have an `application.yml` file on the client's side. Use the following configuration:
 
-```yaml
+```
 server:
   port: 8080
 
@@ -39,11 +39,19 @@ spring:
             issuer-uri: http://auth-server:9000
 messages:
   base-uri: http://127.0.0.1:8081
-
+```
 
 Where base-uri: http://127.0.0.1:8081 represents the resource server URL to which some requests will be redirected (see DefaultController).
 
 If you also want to include a resource server, the application.yml configuration should be as follows:
+```
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://auth-server:9000
+```
 
 Where base-uri: http://127.0.0.1:8081 represents the resource server URL to which some requests will be redirected (see DefaultController).
 
