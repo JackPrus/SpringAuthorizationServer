@@ -16,7 +16,7 @@ password: root
 Next when sso server started in order to connect client application here need to
 have application.yml on client's side like this
 
-'''server:
+```server:
 port: 8080
 
 spring:
@@ -36,18 +36,18 @@ provider:
 spring:
 issuer-uri: http://auth-server:9000
 messages:
-base-uri: http://127.0.0.1:8081'''
+base-uri: http://127.0.0.1:8081```
 
 
-#   where base-uri: http://127.0.0.1:8081  -- resource's server and some request redirects to this URL (see DefaultController)
+where base-uri: http://127.0.0.1:8081  -- resource's server and some request redirects to this URL (see DefaultController)
 
 
 meanwhile if we want to includer resource server
 application.yml configuration must be :
 
-spring:
+```spring:
 security:
 oauth2:
 resourceserver:
 jwt:
-issuer-uri: http://auth-server:9000
+issuer-uri: http://auth-server:9000```
