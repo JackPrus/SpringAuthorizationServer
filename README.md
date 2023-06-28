@@ -1,53 +1,50 @@
-# SpringAuthorizationServer
-authorization server for SSO
+## Local Setup Instructions
 
+To start the application on your local machine, you need to make the following changes:
 
-IN order to start it on local machine need to overwrite 127.0.0.1 as auth-server
-on local machine
-On windows : "C:\Windows\System32\drivers\etc\hosts" open in notepad and write a line
+### 1. Overwrite `127.0.0.1` as the auth-server on your local machine:
+
+On Windows, open the file `C:\Windows\System32\drivers\etc\hosts` in a text editor like Notepad and add the following line at the end of the file:
+
 127.0.0.1 auth-server
-downd here .
 
-Next need to create a database
-Named authorizationserverstorage
-username: postgres
-password: root
+### 2. Create a database named `authorizationserverstorage` with the following credentials:
 
-Next when sso server started in order to connect client application here need to
-have application.yml on client's side like this
+- Username: `postgres`
+- Password: `root`
 
-```server:
-port: 8080
+### 3. Configure the client application by creating an `application.yml` file:
+
+For the client application to connect to the SSO server, you need to have an `application.yml` file on the client's side. Use the following configuration:
+
+```yaml
+server:
+  port: 8080
 
 spring:
-security:
-oauth2:
-client:
-registration:
-springoauthclient:
-provider: spring
-client-id: client
-client-secret: secret
-scope: openid, profile, user.read
-authorization-grant-type: authorization_code
-client-authentication-method: client_secret_basic
-redirect-uri: http://127.0.0.1:8080/login/oauth2/code/spring
-provider:
-spring:
-issuer-uri: http://auth-server:9000
+  security:
+    oauth2:
+      client:
+        registration:
+          springoauthclient:
+            provider: spring
+            client-id: client
+            client-secret: secret
+            scope: openid, profile, user.read
+            authorization-grant-type: authorization_code
+            client-authentication-method: client_secret_basic
+            redirect-uri: http://127.0.0.1:8080/login/oauth2/code/spring
+        provider:
+          spring:
+            issuer-uri: http://auth-server:9000
 messages:
-base-uri: http://127.0.0.1:8081```
+  base-uri: http://127.0.0.1:8081
 
 
-where base-uri: http://127.0.0.1:8081  -- resource's server and some request redirects to this URL (see DefaultController)
+Where base-uri: http://127.0.0.1:8081 represents the resource server URL to which some requests will be redirected (see DefaultController).
 
+If you also want to include a resource server, the application.yml configuration should be as follows:
 
-meanwhile if we want to includer resource server
-application.yml configuration must be :
+Where base-uri: http://127.0.0.1:8081 represents the resource server URL to which some requests will be redirected (see DefaultController).
 
-```spring:
-security:
-oauth2:
-resourceserver:
-jwt:
-issuer-uri: http://auth-server:9000```
+If you also want to include a resource server, the application.yml configuration should be as follows:
