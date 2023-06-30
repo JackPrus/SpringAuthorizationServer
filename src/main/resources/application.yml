@@ -23,9 +23,11 @@ spring:
                 - "authorization_code"
                 - "refresh_token"
               redirect-uris:
-                - "http://127.0.0.1:8080/login/oauth2/code/spring"
+#                - "http://127.0.0.1:8080/login/oauth2/code/spring"
+                - "http://terrain.eastview.com/login/oauth2/code/spring"
               post-logout-redirect-uris:
-                - "http://127.0.0.1:8080/logged-out"
+#                - "http://127.0.0.1:8080/logged-out"
+                - "http://terrain.eastview.com/logged-out"
               scopes:
                 - "openid"
                 - "profile"
@@ -44,9 +46,34 @@ spring:
                 - "authorization_code"
                 - "refresh_token"
               redirect-uris:
-                - "http://127.0.0.1:8082/login/oauth2/code/spring"
+#                - "http://127.0.0.1:8082/login/oauth2/code/spring"
+                - "http://taou.eastview.com/login/oauth2/code/spring"
               post-logout-redirect-uris:
-                - "http://127.0.0.1:8082/logged-out"
+#                - "http://127.0.0.1:8082/logged-out"
+                - "http://taou.eastview.com/logged-out"
+              scopes:
+                - "openid"
+                - "profile"
+                - "user.read"
+                - "user.write"
+            require-authorization-consent: false
+            require-proof-key: false
+
+          client3:
+            registration:
+              client-id: "client3"
+              client-secret: "{noop}secret3"
+              client-authentication-methods:
+                - "client_secret_basic"
+              authorization-grant-types:
+                - "authorization_code"
+                - "refresh_token"
+              redirect-uris:
+#                - "http://127.0.0.1:8082/login/oauth2/code/spring"
+                - "http://taus.eastview.com/login/oauth2/code/spring"
+              post-logout-redirect-uris:
+#                - "http://127.0.0.1:8082/logged-out"
+                - "http://taus.eastview.com/logged-out"
               scopes:
                 - "openid"
                 - "profile"

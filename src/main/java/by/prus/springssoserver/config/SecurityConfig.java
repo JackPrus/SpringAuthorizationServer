@@ -60,7 +60,7 @@ public class SecurityConfig {
 		);
 		return http.build();
 	}
-
+//	only for local
 //	@Bean
 //	public AuthorizationServerSettings authorizationServerSettings() {
 //		return AuthorizationServerSettings.builder()
