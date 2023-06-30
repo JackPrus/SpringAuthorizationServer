@@ -56,11 +56,12 @@ spring:
 
 
 
-  #datasource local
+    #datasource local
+
   datasource:
-    url: jdbc:postgresql://localhost:5432/authorizationserverstorage
-    username: postgres
-    password: root
+    url: ${JDBC_DATABASE_URL:jdbc:postgresql://localhost:5432/authorizationserverstorage}
+    username: ${JDBC_DATABASE_USERNAME:postgres}
+    password: ${JDBC_DATABASE_PASSWORD:root}
     driver-class-name: org.postgresql.Driver
   jpa:
     properties:
