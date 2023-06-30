@@ -61,12 +61,12 @@ public class SecurityConfig {
 		return http.build();
 	}
 
-	@Bean
-	public AuthorizationServerSettings authorizationServerSettings() {
-		return AuthorizationServerSettings.builder()
-				.issuer("http://auth-server:9000")
-				.build();
-	}
+//	@Bean
+//	public AuthorizationServerSettings authorizationServerSettings() {
+//		return AuthorizationServerSettings.builder()
+//				.issuer("http://auth-server:9000")
+//				.build();
+//	}
 	
 	@Bean
     WebSecurityCustomizer webSecurityCustomizer() {
