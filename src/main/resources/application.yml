@@ -82,6 +82,29 @@ spring:
             require-authorization-consent: false
             require-proof-key: false
 
+            client4:
+              registration:
+                client-id: "client4"
+                client-secret: "{noop}secret4"
+                client-authentication-methods:
+                  - "client_secret_basic"
+                authorization-grant-types:
+                  - "authorization_code"
+                  - "refresh_token"
+                redirect-uris:
+                  #                - "http://127.0.0.1:8082/login/oauth2/code/spring"
+                  - "http://terrain-test.eastview.com/login/oauth2/code/spring"
+                post-logout-redirect-uris:
+                  #                - "http://127.0.0.1:8082/logged-out"
+                  - "http://terrain-test.eastview.com/logged-out"
+                scopes:
+                  - "openid"
+                  - "profile"
+                  - "user.read"
+                  - "user.write"
+              require-authorization-consent: false
+              require-proof-key: false
+
 
 
     #datasource local
