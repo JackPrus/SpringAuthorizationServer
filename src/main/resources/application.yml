@@ -93,10 +93,10 @@ spring:
                 - "refresh_token"
               redirect-uris:
                 #                - "http://127.0.0.1:8082/login/oauth2/code/spring"
-                - "http://terrain-test.eastview.com/login/oauth2/code/spring"
+                - "https://terrain-test.eastview.com/oauth2/callback"
               post-logout-redirect-uris:
                 #                - "http://127.0.0.1:8082/logged-out"
-                - "http://terrain-test.eastview.com/logged-out"
+                - "http://terrain-test.eastview.com"
               scopes:
                 - "openid"
                 - "profile"
