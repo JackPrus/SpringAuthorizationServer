@@ -91,14 +91,13 @@ spring:
                 - "authorization_code"
                 - "refresh_token"
               redirect-uris:
-                #                - "http://127.0.0.1:8082/login/oauth2/code/spring"
                 - "https://terrain-test.eastview.com/oauth2/callback"
               post-logout-redirect-uris:
-                #                - "http://127.0.0.1:8082/logged-out"
                 - "http://terrain-test.eastview.com"
               scopes:
                 - "openid"
                 - "profile"
+                - "email"
                 - "user.read"
                 - "user.write"
             require-authorization-consent: false
