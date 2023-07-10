@@ -1,6 +1,5 @@
-#server:
-#  port: 9000
-# in order to push line
+server:
+  port: 9000
 
 logging:
   level:
@@ -126,8 +125,6 @@ spring:
             require-authorization-consent: false
             require-proof-key: false
 
-  jackson:
-    time-zone: America/Chicago
 
 
     #datasource local
