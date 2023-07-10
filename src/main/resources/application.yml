@@ -126,6 +126,8 @@ spring:
             require-authorization-consent: false
             require-proof-key: false
 
+  jackson:
+    time-zone: America/Chicago
 
 
     #datasource local
