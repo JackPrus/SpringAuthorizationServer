@@ -87,7 +87,7 @@ public class SpringssoserverApplication {
         }
 
         String ipValue1 = "127.0.0.1"; //admin
-        String ipValue2 = "77.81.139.40"; //qwer ireland
+        String ipValue2 = "37.120.235.171"; //qwer ireland
         String ipValue3 = "192.168.100.2"; //qwer belarus
         String ipValue4 = "45.135.212.208"; //admin poland
         CustomUser qwerUser = customUserRepository.findByUsername("qwer").get();
