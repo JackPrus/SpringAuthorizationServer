@@ -3,6 +3,8 @@
 	<head>
 		<title>Please Log In</title>
 		<link rel="stylesheet" th:href="@{/css/style.css}">
+		<meta name="_csrf" th:content="${_csrf.token}"/> <!-- CSRF-токен -->
+		<meta name="_csrf_header" th:content="${_csrf.headerName}"/> <!-- Имя заголовка для CSRF-токена -->
 	</head>
 	<body>
 		<div class="login-page">
@@ -22,8 +24,51 @@
 					</div>
 					<input class="button" type="submit" value="Log in" />
 				</form>
+
+				<button class="button" onclick="loginByIP();">Log in by IP</button>
+
 				<p>Dmitry Prus</p>
 			</div>
 		</div>
 	</body>
 </html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Подключаем jQuery -->
+
+<script>
+	function loginByIP() {
+		getUserIP(function(ip) {
+			$.ajax({
+				type: 'POST',
+				url: '/login',
+				data: {
+					username: 'login-by-ip:' + ip,
+					password: ''
+				},
+				success: function () {
+					// Обработка успешного выполнения запроса, если необходимо
+				},
+				error: function () {
+				}
+			});
+		});
+	}
+
+	function getUserIP(callback) {
+		$.getJSON('/get-ip', function(data) {
+			var ip = data.ip;
+			callback(ip);
+		});
+	}
+
+    $(document).ready(function() {
+        // Получаем CSRF-токен из мета-тега
+        var csrfToken = $("meta[name='_csrf']").attr("content");
+        var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+
+        // Добавляем CSRF-токен в заголовок запроса
+        $(document).ajaxSend(function(e, xhr, options) {
+            xhr.setRequestHeader(csrfHeader, csrfToken);
+        });
+    });
+</script>

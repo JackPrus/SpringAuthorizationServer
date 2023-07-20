@@ -103,10 +103,10 @@ class SpringssoserverApplicationTests {
 			user2 = new CustomUser();
 			user2.setUsername("admin");
 			user2.setPassword("admin");
-			user1.setFirstName("Eugeni");
-			user1.setLastName("Parashenko");
-			user1.setEmailAddress("tost@tost.com");
-			user1.setBirthdate(LocalDate.of(1980, 5, 14));
+			user2.setFirstName("Eugeni");
+			user2.setLastName("Parashenko");
+			user2.setEmailAddress("tost@tost.com");
+			user2.setBirthdate(LocalDate.of(1980, 5, 14));
 			Set<Authority> authorities2 = new HashSet<>();
 			authorities2.add(authority2);
 			authorities2.add(authority1);
