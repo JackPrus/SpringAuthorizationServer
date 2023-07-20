@@ -57,7 +57,6 @@ public class SecurityConfig {
                 )
                 .oauth2ResourceServer((resourceServer) -> resourceServer
                         .jwt(withDefaults()));
-
         return http.build();
     }
 
