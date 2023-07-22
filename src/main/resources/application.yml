@@ -124,6 +124,27 @@ spring:
             require-authorization-consent: false
             require-proof-key: false
 
+          client6:
+            registration:
+               client-id: "client6"
+               client-secret: "{noop}secret6"
+               client-authentication-methods:
+                 - "client_secret_basic"
+               authorization-grant-types:
+                 - "authorization_code"
+                 - "refresh_token"
+               redirect-uris:
+                 - "http://localhost:8082/login/oauth2/code/spring"
+               post-logout-redirect-uris:
+                 - "http://localhost:8082/logged-out"
+               scopes:
+                 - "openid"
+                 - "profile"
+                 - "user.read"
+                 - "user.write"
+            require-authorization-consent: false
+            require-proof-key: false
+
 
 
     #datasource local
