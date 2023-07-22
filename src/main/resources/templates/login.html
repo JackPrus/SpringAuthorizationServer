@@ -1,74 +1,48 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
-	<head>
-		<title>Please Log In</title>
-		<link rel="stylesheet" th:href="@{/css/style.css}">
-		<meta name="_csrf" th:content="${_csrf.token}"/> <!-- CSRF-токен -->
-		<meta name="_csrf_header" th:content="${_csrf.headerName}"/> <!-- Имя заголовка для CSRF-токена -->
-	</head>
-	<body>
-		<div class="login-page">
-		  	<div class="form">
-				<h1>Demo auth server</h1>
-				<h2>Please Log In</h2>
-				<div class="error" th:if="${param.error}">
-					Invalid username and password.</div>
-				<div class="error" th:if="${param.logout}">
-					You have been logged out.</div>
-				<form  class="login-form" th:action="@{/login}" method="post">
-					<div>
-					<input type="text" name="username" placeholder="Username"/>
-					</div>
-					<div>
-					<input type="password" name="password" placeholder="Password"/>
-					</div>
-					<input class="button" type="submit" value="Log in" />
-				</form>
-
-				<button class="button" onclick="loginByIP();">Log in by IP</button>
-
-				<p>Dmitry Prus</p>
-			</div>
-		</div>
-	</body>
+d<head>
+    <title>Please Log In</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="login-page">
+    <div class="form">
+        <h1>Demo auth server</h1>
+        <h2>Please Log In</h2>
+        <div class="error" th:if="${param.error}">
+            Invalid username and password.
+        </div>
+        <div class="error" th:if="${param.logout}">
+            You have been logged out.
+        </div>
+        <form class="login-form" th:action="@{/login}" method="post">
+            <div><input type="text" name="username" placeholder="Username"/></div>
+            <div><input type="password" name="password" placeholder="Password"/></div>
+            <input class="button" type="submit" value="Log in"/>
+        </form>
+        <button class="button" onclick="loginByIP();">Log in by IP</button>
+        <p>Dmitry Prus</p>
+    </div>
+</div>
+</body>
 </html>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Подключаем jQuery -->
 
 <script>
-	function loginByIP() {
-		getUserIP(function(ip) {
-			$.ajax({
-				type: 'POST',
-				url: '/login',
-				data: {
-					username: 'login-by-ip:' + ip,
-					password: ''
-				},
-				success: function () {
-					// Обработка успешного выполнения запроса, если необходимо
-				},
-				error: function () {
-				}
-			});
-		});
-	}
-
-	function getUserIP(callback) {
-		$.getJSON('/get-ip', function(data) {
-			var ip = data.ip;
-			callback(ip);
-		});
-	}
-
-    $(document).ready(function() {
-        // Получаем CSRF-токен из мета-тега
-        var csrfToken = $("meta[name='_csrf']").attr("content");
-        var csrfHeader = $("meta[name='_csrf_header']").attr("content");
-
-        // Добавляем CSRF-токен в заголовок запроса
-        $(document).ajaxSend(function(e, xhr, options) {
-            xhr.setRequestHeader(csrfHeader, csrfToken);
+    function loginByIP() {
+        getUserIP(function (ip) {
+            var form = $(".login-form"); // Находим форму по классу
+            form.find("input[name='username']").val('login-by-ip:' + ip); // Устанавливаем значение для поля username
+            form.find("input[name='password']").val(''); // Устанавливаем пустое значение для поля password (если необходимо)
+            form.submit(); // Отправляем форму на сервер
         });
-    });
+    }
+
+    function getUserIP(callback) {
+        $.getJSON('/get-ip', function (data) {
+            var ip = data.ip;
+            callback(ip);
+        });
+    }
 </script>
